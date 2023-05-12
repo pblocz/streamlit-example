@@ -17,6 +17,15 @@ In the meantime, below is an example of what you can do with just a few lines of
 
 
 with st.echo(code_location='below'):
+    def store_api_key():
+        st.session_state.api_key = st.session_state.api_key_text
+
+    if "api_key" not in st.session_state:
+        st.session_state.api_key = ""
+
+    st.text("Text")
+    api_key = st.text_input("Enter API key here, or contact the author if you don't have one.", value=st.session_state.api_key, key="api_key_text", on_change=store_api_key)
+
     total_points = st.slider("Number of points in spiral", 1, 5000, 2000)
     num_turns = st.slider("Number of turns in spiral", 1, 100, 9)
 
